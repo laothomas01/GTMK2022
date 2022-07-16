@@ -30,3 +30,8 @@ Backlog:
 [ ] worry about nice graphics
 
 [ ] unit testing
+
+[ ] on screen timer
+
+[ ] miles per hour HUD
+
