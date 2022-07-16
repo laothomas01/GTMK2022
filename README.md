@@ -22,6 +22,7 @@ Basic TodoList:
 [ ] implement event after player crosses finish line
 
 Backlog:
+[ ] checkpoints
 
 [ ] menu screen
 
