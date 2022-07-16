@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     Rigidbody rb;
     bool move;
     InputType input;
-    Transform transform;
-    public float speed = 2;
 
+    public float speed = 2;
+    Vector3 currentPosition;
     //KeyCode keyCode;
 
     public enum InputType
@@ -21,20 +21,74 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         move = false;
-
         input = InputType.FORWARD;
-        transform = GetComponent<Transform>();
+
+
         //keyCode = KeyCode.None;
     }
 
     // Update is called once per frame
     void Update()
     {
+        handlePlayerInputs();
 
+    }
+    private void FixedUpdate()
+    {
 
+        handleMovement();
+    }
 
+    public void handleMovement()
+    {
 
+        if (move && input == InputType.FORWARD)
+        {
 
+            rb.AddForce(0, 0, 500 * Time.deltaTime);
+        }
+        else if (move && input == InputType.BACKWARD)
+        {
+            rb.AddForce(0, 0, -500 * Time.deltaTime);
+        }
+        else if (move && input == InputType.LEFT)
+        {
+            rb.AddForce(-500 * Time.deltaTime, 0, 0);
+        }
+        else if (move && input == InputType.RIGHT)
+        {
+            rb.AddForce(500 * Time.deltaTime, 0, 0);
+        }
+        else if (move && input == InputType.FORWARD_RIGHT)
+        {
+
+            rb.AddForce(500 * Time.deltaTime, 0, 500 * Time.deltaTime);
+        }
+        else if (move && input == InputType.FORWARD_LEFT)
+        {
+
+            rb.AddForce(-500 * Time.deltaTime, 0, 500 * Time.deltaTime);
+        }
+        else if (move && input == InputType.BACKWARD_LEFT)
+        {
+
+            rb.AddForce(-500 * Time.deltaTime, 0, -500 * Time.deltaTime);
+        }
+        else if (move && input == InputType.BACKWARD_RIGHT)
+        {
+
+            rb.AddForce(500 * Time.deltaTime, 0, -500 * Time.deltaTime);
+        }
+
+    }
+    public void handlePlayerInputs()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+
+            SceneManager.LoadScene(0);
+
+        }
         if (Input.GetKey(KeyCode.W))
         {
             //  FORWARD RIGHT
@@ -156,48 +210,5 @@ public class PlayerController : MonoBehaviour
         {
             move = false;
         }
-    }
-    private void FixedUpdate()
-    {
-
-        if (move && input == InputType.FORWARD)
-        {
-
-            rb.AddForce(0, 0, 500 * Time.deltaTime);
-        }
-        else if (move && input == InputType.BACKWARD)
-        {
-            rb.AddForce(0, 0, -500 * Time.deltaTime);
-        }
-        else if (move && input == InputType.LEFT)
-        {
-            rb.AddForce(-500 * Time.deltaTime, 0, 0);
-        }
-        else if (move && input == InputType.RIGHT)
-        {
-            rb.AddForce(500 * Time.deltaTime, 0, 0);
-        }
-        else if (move && input == InputType.FORWARD_RIGHT)
-        {
-
-            rb.AddForce(500 * Time.deltaTime, 0, 500 * Time.deltaTime);
-        }
-        else if (move && input == InputType.FORWARD_LEFT)
-        {
-
-            rb.AddForce(-500 * Time.deltaTime, 0, 500 * Time.deltaTime);
-        }
-        else if (move && input == InputType.BACKWARD_LEFT)
-        {
-
-            rb.AddForce(-500 * Time.deltaTime, 0, -500 * Time.deltaTime);
-        }
-        else if (move && input == InputType.BACKWARD_RIGHT)
-        {
-
-            rb.AddForce(500 * Time.deltaTime, 0, -500 * Time.deltaTime);
-        }
-
-
     }
 }
