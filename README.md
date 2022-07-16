@@ -7,6 +7,8 @@ Time requirement: 1 day and 18 hours 27 minutes
 
 Basic TodoList:
 
+[ ] restart function
+
 [ ] monkey-ball miles per hour speed boosting physics
 
 [ ] create basic stages
