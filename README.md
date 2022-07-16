@@ -37,3 +37,10 @@ Backlog:
 
 [ ] miles per hour HUD
 
+[ ] deal with what happens when player falls off the stage
+
+[ ] minimap 
+
+[ ] sound design
+
+[ ] visual queues
